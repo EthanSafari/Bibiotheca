@@ -159,3 +159,4 @@ def undo_notes():
         db.session.execute("DELETE FROM notes")
 
     db.session.commit()
+
