@@ -6,5 +6,5 @@ from wtforms.validators import DataRequired
 
 class NotebookForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
-    trash = BooleanField('Trash', default= False, validators=[DataRequired()])
+    trash = BooleanField('Trash', default= False)
     user_id = IntegerField('User ID', validators=[DataRequired()])
