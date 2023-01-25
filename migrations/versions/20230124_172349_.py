@@ -36,7 +36,7 @@ def upgrade():
     op.create_table('notes',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=255), nullable=False),
-    sa.Column('body', sa.String(length=5000), nullable=False),
+    sa.Column('body', sa.String(length=10000), nullable=False),
     sa.Column('trash', sa.Boolean(), nullable=False),
     sa.Column('user_id', sa.String(length=255), nullable=False),
     sa.Column('notebook_id', sa.Integer(), nullable=False),
