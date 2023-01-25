@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import Notebook, db
+from app.models import Notebook, Note, db
 from app.forms.notebook_form import NotebookForm
 from flask_login import login_required
 
@@ -50,3 +50,10 @@ def notebook_by_id(notebook_id):
 
     else:
         return { "error": "Notebook not found", "errorCode" : 404 }, 404
+
+
+@notebook_routes.route('/<int:notebook_id>/notes', methods=['GET'])
+@login_required
+def notebook_notes_by_id(notebook_id):
+    notes = Note.query.filter(Note.notebook_id == notebook_id).all()
+    return { 'notes': [note.to_dict() for note in notes] }

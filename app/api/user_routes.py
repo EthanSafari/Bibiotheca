@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import User, Notebook
+from app.models import User, Notebook, Note
 
 user_routes = Blueprint('users', __name__)
 
@@ -28,5 +28,12 @@ def user(id):
 @user_routes.route('/<int:id>/notebooks')
 @login_required
 def get_notebooks_by_user_id(id):
-        notebooks = Notebook.query.filter(Notebook.user_id == id).all()
-        return { 'notebooks' : [notebook.to_dict() for notebook in notebooks] }
+    notebooks = Notebook.query.filter(Notebook.user_id == id).all()
+    return { 'notebooks' : [notebook.to_dict() for notebook in notebooks] }
+
+
+@user_routes.route('/<int:id>/notes')
+@login_required
+def get_notes_by_user_id(id):
+    notes = Note.query.filter(Note.user_id == id).all()
+    return { 'notes' : [note.to_dict() for note in notes] }
