@@ -22,6 +22,6 @@ class Note(db.Model):
             'name': self.name,
             'body': self.body,
             'trash': self.trash,
-            'user_id': self.user_id,
+            'userId': self.user_id,
             'notebookId': self.notebook_id
         }
