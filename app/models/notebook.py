@@ -12,12 +12,12 @@ class Notebook(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
 
     user = db.relationship('User', back_populates='notebooks')
-    notes = db.relationship('Note', back_populates='notebook')
+    notes = db.relationship('Note', back_populates='notebook', cascade="all, delete")
 
     def to_dict(self):
         return {
             'id': self.id,
             'name': self.name,
             'trash': self.trash,
-            'userId': self.id
+            'userId': self.user_id
         }
