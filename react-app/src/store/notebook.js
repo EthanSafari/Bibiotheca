@@ -56,6 +56,7 @@ export const getSingleNotebook = (notebookId) => async (dispatch) => {
     const res = await fetch(`/api/notebooks/${notebookId}`);
     if (res.ok) {
         const data = await res.json();
+        console.log(data)
         dispatch(loadOneNotebook(data));
         return data;
     };
@@ -68,7 +69,7 @@ export const createNotebook = (notebook) => async (dispatch) => {
         body: JSON.stringify(notebook),
     });
     if (res.ok) {
-        const data = res.json();
+        const data = await res.json();
         dispatch(addNotebook(data));
         return data;
     };
@@ -112,8 +113,8 @@ const notebookReducer = (state = intialState, action) => {
             return newState;
 
         case LOAD_SINGLE_NOTEBOOK:
-            newState = { allNotebooks: {...state.allNotebooks}, oneNotebook: {...state.oneNotebook} };
-            newState.allNotebooks[action.notebook.id] = action.notebook;
+            newState = { allNotebooks: {...state.allNotebooks}, oneNotebook: {} };
+            newState.oneNotebook[action.notebook.id] = action.notebook;
             return newState;
 
         case ADD_NOTEBOOK:
@@ -121,6 +122,12 @@ const notebookReducer = (state = intialState, action) => {
             newState.allNotebooks[action.notebook.id] = action.notebook;
             newState.oneNotebook[action.notebook.id] = action.notebook;
             return newState;
+
+        case EDIT_NOTEBOOK:
+            newState = { allNotebooks: {...state.allNotebooks}, oneNotebook: {...state.oneNotebook} };
+            newState.allNotebooks[action.notebook.id] = action.notebook;
+            newState.oneNotebook[action.notebook.id] = action.notebook;
+            return newState
 
         case DELETE_NOTEBOOK:
             newState = { allNotebooks: {...state.allNotebooks}, oneNotebook: {...state.oneNotebook} };
