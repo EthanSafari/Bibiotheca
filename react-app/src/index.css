@@ -6,8 +6,7 @@
 
 .homepage {
     border: 1px solid black;
-    width: 100%;
-    height: 100vh;
+
     display: flex;
     padding: 1rem;
 }
@@ -36,9 +35,11 @@
 }
 
 .current-option-options {
-    height: 100%;
+    height: fit-content;
     border: 1px solid black;
-    width: 20%;
+    width: 98%;
+    display: flex;
+    padding: 3px;
 }
 
 .current-option-content-details {
@@ -55,4 +56,41 @@
 .edit-container-area {
     border: 1px solid black;
     height: 53.9rem;
+}
+
+.add-and-notebooks {
+    padding: .3rem;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 15rem;
+}
+
+.notebook-list-item {
+    display: flex;
+    width: 13.9rem;
+    justify-content: space-between;
+    margin:5px 0;
+}
+
+.new-notebook {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    align-items: center;
+}
+
+/* .name-input {
+    width: 100%;
+} */
+
+.note-book-heading {
+    display: flex;
+    justify-content: center;
+    width: 12rem;
+    margin-bottom: 8px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid black;
 }

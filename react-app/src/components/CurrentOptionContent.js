@@ -2,21 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { reviseNotebook } from '../store/notebook';
 
-const CurrentOptionContent = ({ notebook }) => {
+const CurrentOptionContent = () => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const currentNotebook = useSelector(state => state.notebooks.oneNotebook);
     const notebookItem = Object.values(currentNotebook);
-    console.log(currentNotebook)
 
     const [switchEdit, setSwitchEdit] = useState(false);
     const [editNotebookName, setEditNotebookName] = useState(notebookItem[0]?.name);
 
-    console.log(editNotebookName)
-
     useEffect(() => {
         if (currentNotebook) {
-            setEditNotebookName(notebookItem[0]?.name)
+            setEditNotebookName(notebookItem[0]?.name);
         };
     }, [currentNotebook])
 
@@ -24,15 +21,15 @@ const CurrentOptionContent = ({ notebook }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-            const updateNotebook = {
-                id: notebookItem[0]?.id,
-                name: editNotebookName,
-                trash: notebookItem[0]?.trash,
-                user_id: sessionUser.id,
-            };
-            dispatch(reviseNotebook(updateNotebook));
-            setSwitchEdit(false);
-            setEditNotebookName(editNotebookName);
+        const updateNotebook = {
+            id: notebookItem[0]?.id,
+            name: editNotebookName,
+            trash: notebookItem[0]?.trash,
+            user_id: sessionUser.id,
+        };
+        dispatch(reviseNotebook(updateNotebook));
+        setSwitchEdit(false);
+        setEditNotebookName(editNotebookName);
     };
 
     return (
