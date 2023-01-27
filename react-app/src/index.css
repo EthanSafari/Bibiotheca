@@ -2,74 +2,98 @@
 * {
     margin: 0;
     padding: 0;
+    color: rgba(0, 0, 0, .8);
+    font-family: 'Roboto Slab', serif;
 }
 
 .homepage {
-    border: 1px solid black;
-
+    /* border: 1px solid black; */
+    /* border-radius: 3px; */
     display: flex;
     padding: 1rem;
+    background-image: url(https://www.highlysprungsofas.co.uk/wp-content/uploads/2016/03/HSS00A9.png);
+    background-position: center;
+    background-size: contain;
+    background-color: rgba(0, 0, 0, .7);
 }
 
 .user-nav {
     height: 100%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 15%;
+    border-radius: 3px;
+    background-color: white;
+    padding: 5px;
 }
 
 .current-option {
     height: 100%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 85%;
     margin-left: .5rem;
     padding: .3rem;
     display: flex;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, .7);
 }
 
 
 .current-option-content {
     height: 100%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 80%;
     margin-left: .5rem;
+    border-radius: 3px;
 }
 
 .current-option-options {
     height: fit-content;
     border: 1px solid black;
-    width: 98%;
+    width: 96%;
     display: flex;
     padding: 3px;
+    border-radius: 3px;
 }
 
 .current-option-content-details {
     display: flex;
     flex-direction: column;
     padding: .5rem;
+    background-color: rgba(211, 211, 211, .7);
+    border-radius: 3px;
 }
 
 .edit-container {
-    border: 1px solid black;
-    height: 5rem;
+    background-color: white;
+    /* border: 1px solid black; */
+    height: fit-content;
+    padding: 5px;
+    border-radius: 3px 3px 0 0 ;
+    border-bottom: none;
 }
 
 .edit-container-area {
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    border-top: 1px solid rgba(211, 211, 211, .7);
     height: 53.9rem;
+    border-radius: 0 0 3px 3px;
+    background-color: white;
 }
 
 .add-and-notebooks {
     padding: .3rem;
     border: 1px solid black;
+    border-radius: 3px;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 15rem;
+    background-color: white;
 }
 
 .notebook-list-item {
     display: flex;
-    width: 13.9rem;
+    width: 13.6rem;
     justify-content: space-between;
     margin:5px 0;
 }
@@ -93,4 +117,24 @@
     margin-bottom: 8px;
     padding-bottom: 3px;
     border-bottom: 1px solid black;
+}
+
+.edit-name {
+    display: flex;
+    width: 13rem;
+}
+
+.edit-button {
+    margin-right: 5px;
+    background-color: transparent;
+    border: none;
+}
+
+.delete-button {
+    background-color: transparent;
+    border: none;
+}
+
+.fire-button:hover {
+    color: red;
 }

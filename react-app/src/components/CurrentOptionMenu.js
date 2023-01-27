@@ -49,7 +49,7 @@ const CurrentOptionMenu = ({ notebooks }) => {
                                 required
                                 className='name-input'
                             />
-                            <button >Add Notebook</button>
+                            <button disabled={newNotebook.length < 1}>Add Notebook</button>
                         </form>
                     ) : (
                         <div>
@@ -64,9 +64,9 @@ const CurrentOptionMenu = ({ notebooks }) => {
                         {notebooks.map(notebook => (
                             <div key={notebook.id} className='notebook-list-item'>
                                 <div onClick={() => getCurrentNotebook(notebook.id)}>
-                                    <div>{notebook.name}</div>
+                                    <div className='notebook-list-item-name'>{notebook.name}</div>
                                 </div>
-                                <button onClick={() => deleteNotebookById(notebook.id)}>Del</button>
+                                {notebooks.length > 1 && <button className='delete-button' onClick={() => deleteNotebookById(notebook.id)}><i class="fa-solid fa-fire fire-button"></i></button>}
                             </div>
                         ))}
                     </div>

@@ -47,9 +47,9 @@ const CurrentOptionContent = () => {
                         <button disabled={editNotebookName == ''}>Save</button>
                     </form>
                 ) : (
-                    <div>
+                    <div className='edit-name'>
+                        <button className='edit-button' onClick={() => setSwitchEdit(true)}><i class="fa-regular fa-pen-to-square edit-pencil"></i></button>
                         <div>{notebookItem[0]?.name}</div>
-                        <button onClick={() => setSwitchEdit(true)}>edit</button>
                     </div>
                 )}
             </div>
