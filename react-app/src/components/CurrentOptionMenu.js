@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { getAllNotes, getSingleNote } from '../store/note';
 import { burnNotebook, createNotebook, getSingleNotebook } from '../store/notebook';
 import CurrentOptionContent from './CurrentOptionContent';
 
-const CurrentOptionMenu = ({ notebooks }) => {
+const CurrentOptionMenu = ({ notebooks, notes }) => {
     const dispatch = useDispatch();
     const [addNewNotebook, setAddNewNotebook] = useState(false);
     const [newNotebook, setNewNotebook] = useState('');
     const sessionUser = useSelector(state => state.session.user);
     // const notTrashedNotebooks = notebooks.filter(notebook => notebook.trash === false); //for when trash feature is implemented
 
-
     const getCurrentNotebook = (notebookId) => {
-        dispatch(getSingleNotebook(notebookId))
+        dispatch(getSingleNotebook(notebookId));
+        dispatch(getAllNotes(notebookId));
     };
 
     const deleteNotebookById = (notebookId) => {
         dispatch(burnNotebook(notebookId));
+    };
+
+    const getCurrentNote = (noteId) => {
+        dispatch(getSingleNote(noteId));
     };
 
     const handleSubmit = (e) => {
@@ -29,7 +34,7 @@ const CurrentOptionMenu = ({ notebooks }) => {
             user_id: sessionUser.id,
         };
 
-        dispatch(createNotebook(newNotebookItem));
+        dispatch(createNotebook(newNotebookItem, sessionUser.id));
         setAddNewNotebook(false);
     };
 
@@ -43,7 +48,7 @@ const CurrentOptionMenu = ({ notebooks }) => {
                         <form onSubmit={handleSubmit} className='new-notebook'>
                             <input
                                 type='text'
-                                placeholder={'name'}
+                                placeholder={'Please enter a valid name'}
                                 value={newNotebook}
                                 onChange={e => setNewNotebook(e.target.value)}
                                 required
@@ -73,11 +78,20 @@ const CurrentOptionMenu = ({ notebooks }) => {
                 </div>
                 <div>
                     Notes
+                    <div className='current-option-options'>
+                        {notes.map(note => (
+                            <div key={note.id} className='notebook-list-item'>
+                                <div onClick={() => getCurrentNote(note.id)}>
+                                    <div className='notebook-list-item-name'>{note.name}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
-                <div className='current-option-content'>
-                    <CurrentOptionContent />
-                </div>
+            <div className='current-option-content'>
+                <CurrentOptionContent />
+            </div>
         </div>
     );
 };

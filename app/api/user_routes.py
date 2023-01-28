@@ -29,6 +29,16 @@ def user(id):
 @login_required
 def get_notebooks_by_user_id(id):
     notebooks = Notebook.query.filter(Notebook.user_id == id).all()
+
+    # notebook_list = list()
+
+    # for notebook in notebooks:
+    #     notebook_dict = notebook.to_dict()
+    #     notebook_dict['notes'] = [note.to_dict() for note in notebook.notes]
+    #     notebook_list.append(notebook_dict)
+
+    # return { 'notebooks': notebook_list }
+
     return { 'notebooks' : [notebook.to_dict() for notebook in notebooks] }
 
 

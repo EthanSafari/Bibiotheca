@@ -62,7 +62,7 @@ export const getSingleNotebook = (notebookId) => async (dispatch) => {
     };
 };
 
-export const createNotebook = (notebook) => async (dispatch) => {
+export const createNotebook = (notebook, userId) => async (dispatch) => {
     const res = await fetch(`/api/notebooks/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -70,6 +70,17 @@ export const createNotebook = (notebook) => async (dispatch) => {
     });
     if (res.ok) {
         const data = await res.json();
+        const createNote = await fetch(`/api/notes/`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name: 'First Note',
+                trash: false,
+                user_id: userId,
+                notebook_id: data.id,
+                body: 'Here is a place to display all your thoughts...',
+            }),
+        });
         dispatch(addNotebook(data));
         return data;
     };
@@ -106,7 +117,7 @@ const notebookReducer = (state = intialState, action) => {
     let newState;
     switch (action.type) {
         case LOAD_NOTEBOOKS:
-            newState = { allNotebooks: {...state.allNotebooks}, oneNotebook: {...state.oneNotebook} };
+            newState = { allNotebooks: {}, oneNotebook: {...state.oneNotebook} };
             action.notebooks.notebooks.forEach(notebook => {
                 newState.allNotebooks[notebook.id] = notebook;
             });

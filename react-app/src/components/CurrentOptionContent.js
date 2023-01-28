@@ -6,7 +6,12 @@ const CurrentOptionContent = () => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const currentNotebook = useSelector(state => state.notebooks.oneNotebook);
+    const currentNote = useSelector(state => state.notes.oneNote);
+
     const notebookItem = Object.values(currentNotebook);
+    const noteItem = Object.values(currentNote);
+
+    console.log(currentNote)
 
     const [switchEdit, setSwitchEdit] = useState(false);
     const [editNotebookName, setEditNotebookName] = useState(notebookItem[0]?.name);
@@ -39,7 +44,7 @@ const CurrentOptionContent = () => {
                     <form onSubmit={handleSubmit}>
                         <input
                             type='text'
-                            placeholder={'name'}
+                            placeholder={'Please enter a valid name'}
                             value={editNotebookName}
                             onChange={e => setEditNotebookName(e.target.value)}
                             required
@@ -52,9 +57,10 @@ const CurrentOptionContent = () => {
                         <div>{notebookItem[0]?.name}</div>
                     </div>
                 )}
+                <div>{noteItem[0]?.name}</div>
             </div>
             <div className='edit-container-area'>
-
+                    {noteItem[0]?.body}
             </div>
         </div>
     );

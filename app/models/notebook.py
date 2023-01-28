@@ -19,5 +19,6 @@ class Notebook(db.Model):
             'id': self.id,
             'name': self.name,
             'trash': self.trash,
-            'userId': self.user_id
+            'userId': self.user_id,
+            # 'notes': [note.to_dict() for note in self.notes]
         }

@@ -51,8 +51,9 @@
     border: 1px solid black;
     width: 96%;
     display: flex;
-    padding: 3px;
+    padding: 5px;
     border-radius: 3px;
+    align-items: center;
 }
 
 .current-option-content-details {
@@ -78,6 +79,7 @@
     height: 53.9rem;
     border-radius: 0 0 3px 3px;
     background-color: white;
+    padding: 1rem;
 }
 
 .add-and-notebooks {
