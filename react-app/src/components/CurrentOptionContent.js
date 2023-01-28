@@ -92,6 +92,7 @@ const CurrentOptionContent = () => {
                             value={editNoteName}
                             onChange={e => setEditNoteName(e.target.value)}
                             required
+                            className='note-edit-name'
                         />
                     </form>
                 ) : (
@@ -115,6 +116,7 @@ const CurrentOptionContent = () => {
                             value={editNoteBody}
                             onChange={e => setEditNoteBody(e.target.value)}
                             required
+                            className='text-area-note'
                         />
                     </form>
                 ) : (

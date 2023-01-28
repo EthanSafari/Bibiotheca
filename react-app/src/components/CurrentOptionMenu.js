@@ -83,7 +83,7 @@ const CurrentOptionMenu = ({ notebooks, notes }) => {
                         {notes.map(note => (
                             <div key={note.id} className='notebook-list-item'>
                                 <div onClick={() => getCurrentNote(note.id)}>
-                                    <div className='notebook-list-item-name'>{note.name}</div>
+                                    <div className='notebook-list-item-name'># {note.name}</div>
                                 </div>
                             </div>
                         ))}
