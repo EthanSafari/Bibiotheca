@@ -71,6 +71,8 @@
     padding: 5px;
     border-radius: 3px 3px 0 0 ;
     border-bottom: none;
+    display: flex;
+    justify-content: space-between;
 }
 
 .edit-container-area {
@@ -123,7 +125,6 @@
 
 .edit-name {
     display: flex;
-    width: 13rem;
 }
 
 .edit-button {

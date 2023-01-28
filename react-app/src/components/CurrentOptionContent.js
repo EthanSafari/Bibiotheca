@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { rewriteNote } from '../store/note';
 import { reviseNotebook } from '../store/notebook';
 
 const CurrentOptionContent = () => {
@@ -16,11 +17,22 @@ const CurrentOptionContent = () => {
     const [switchEdit, setSwitchEdit] = useState(false);
     const [editNotebookName, setEditNotebookName] = useState(notebookItem[0]?.name);
 
+    const [switchEditNoteBody, setSwitchEditNoteBody] = useState(false);
+    const [editNoteBody, setEditNoteBody] = useState(noteItem[0]?.body);
+    const [editNoteName, setEditNoteName] = useState(noteItem[0]?.name);
+
     useEffect(() => {
         if (currentNotebook) {
             setEditNotebookName(notebookItem[0]?.name);
         };
     }, [currentNotebook])
+
+    useEffect(() => {
+        if (currentNote) {
+            setEditNoteBody(noteItem[0]?.body);
+            setEditNoteName(noteItem[0]?.name);
+        };
+    }, [currentNote]);
 
 
     const handleSubmit = (e) => {
@@ -37,6 +49,22 @@ const CurrentOptionContent = () => {
         setEditNotebookName(editNotebookName);
     };
 
+    const onNoteEditSubmit = async () => {
+
+        const updatedNote = {
+            id: noteItem[0]?.id,
+            name: editNoteName,
+            body: editNoteBody,
+            trash: noteItem[0]?.trash,
+            user_id: sessionUser.id,
+            notebook_id: notebookItem[0]?.id
+        };
+        await dispatch(rewriteNote(updatedNote));
+        setSwitchEditNoteBody(false);
+        setEditNoteBody(editNoteBody);
+        setEditNoteName(editNoteName);
+    }
+
     return (
         <div className='current-option-content-details'>
             <div className='edit-container'>
@@ -49,7 +77,6 @@ const CurrentOptionContent = () => {
                             onChange={e => setEditNotebookName(e.target.value)}
                             required
                         />
-                        <button disabled={editNotebookName == ''}>Save</button>
                     </form>
                 ) : (
                     <div className='edit-name'>
@@ -57,12 +84,44 @@ const CurrentOptionContent = () => {
                         <div>{notebookItem[0]?.name}</div>
                     </div>
                 )}
-                <div>{noteItem[0]?.name}</div>
+                {switchEditNoteBody && currentNote ? (
+                    <form>
+                        <input
+                            type='text'
+                            placeholder={'Please enter a valid name'}
+                            value={editNoteName}
+                            onChange={e => setEditNoteName(e.target.value)}
+                            required
+                        />
+                    </form>
+                ) : (
+                    <div>{noteItem[0]?.name}</div>
+                )}
+                <div>
+                    <button>delete</button>
+                    {switchEditNoteBody && currentNote ? (
+                        <button onClick={() => onNoteEditSubmit()}>save</button>
+                    ) : (
+                    <button onClick={() => setSwitchEditNoteBody(true)}>edit</button>
+                    )}
+                </div>
             </div>
             <div className='edit-container-area'>
-                    {noteItem[0]?.body}
+                {switchEditNoteBody && currentNote ? (
+                    <form>
+                        <textarea
+                            type='text'
+                            placeholder={'Please enter youre thoughts here...'}
+                            value={editNoteBody}
+                            onChange={e => setEditNoteBody(e.target.value)}
+                            required
+                        />
+                    </form>
+                ) : (
+                    <div>{noteItem[0]?.body}</div>
+                )}
             </div>
-        </div>
+        </div >
     );
 };
 
