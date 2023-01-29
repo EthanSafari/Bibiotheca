@@ -56,7 +56,6 @@ export const getSingleNotebook = (notebookId) => async (dispatch) => {
     const res = await fetch(`/api/notebooks/${notebookId}`);
     if (res.ok) {
         const data = await res.json();
-        console.log(data)
         dispatch(loadOneNotebook(data));
         return data;
     };

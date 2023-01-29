@@ -95,8 +95,24 @@ export const signUp = (username, email, password, first_name) => async (dispatch
         trash: false,
       }),
     });
-    dispatch(setUser(data))
-    return null;
+    if (addFirstnotebook.ok) {
+      const firstNotebookData = await addFirstnotebook.json();
+      const addFirstNote = await fetch(`/api/notes/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'First Note',
+          body: `Welcome to Bibliotheca! We would like to offer a place to keep your thoughts safe! Feel free to edit your notes by pressing
+          edit in the righthand corner. Add notebooks and notes with the add notebook and add note buttons. As you continue creating your notes and
+          many notebooks, you'll be able to delete and organize as you feel. This space is yours! Feel free to let your thoughts flow! :)`,
+          trash: false,
+          user_id: data.id,
+          notebook_id: firstNotebookData.id,
+        }),
+      });
+      dispatch(setUser(data))
+      return null;
+    }
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {

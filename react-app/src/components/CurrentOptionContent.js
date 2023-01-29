@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { rewriteNote } from '../store/note';
+import { burnNote, rewriteNote } from '../store/note';
 import { reviseNotebook } from '../store/notebook';
 
 const CurrentOptionContent = () => {
@@ -8,11 +8,11 @@ const CurrentOptionContent = () => {
     const sessionUser = useSelector(state => state.session.user);
     const currentNotebook = useSelector(state => state.notebooks.oneNotebook);
     const currentNote = useSelector(state => state.notes.oneNote);
+    const currentNotesObj = useSelector(state => state.notes.allNotes);
 
     const notebookItem = Object.values(currentNotebook);
     const noteItem = Object.values(currentNote);
-
-    console.log(currentNote)
+    const currentNotesArray = Object.values(currentNotesObj);
 
     const [switchEdit, setSwitchEdit] = useState(false);
     const [editNotebookName, setEditNotebookName] = useState(notebookItem[0]?.name);
@@ -33,7 +33,6 @@ const CurrentOptionContent = () => {
             setEditNoteName(noteItem[0]?.name);
         };
     }, [currentNote]);
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -63,7 +62,11 @@ const CurrentOptionContent = () => {
         setSwitchEditNoteBody(false);
         setEditNoteBody(editNoteBody);
         setEditNoteName(editNoteName);
-    }
+    };
+
+    const deleteNoteItem = (noteId) => {
+        dispatch(burnNote(noteId))
+    };
 
     return (
         <div className='current-option-content-details'>
@@ -77,10 +80,11 @@ const CurrentOptionContent = () => {
                             onChange={e => setEditNotebookName(e.target.value)}
                             required
                         />
+                        <button disabled={editNotebookName?.length < 1 || new Array(editNotebookName?.length).fill(' ').join('') === editNotebookName}>Save</button>
                     </form>
                 ) : (
                     <div className='edit-name'>
-                        <button className='edit-button' onClick={() => setSwitchEdit(true)}><i class="fa-regular fa-pen-to-square edit-pencil"></i></button>
+                        <button title='Edit Notebook Name' className='edit-button' onClick={() => setSwitchEdit(true)}><i class="fa-regular fa-pen-to-square edit-pencil"></i></button>
                         <div>{notebookItem[0]?.name}</div>
                     </div>
                 )}
@@ -98,12 +102,19 @@ const CurrentOptionContent = () => {
                 ) : (
                     <div>{noteItem[0]?.name}</div>
                 )}
-                <div>
-                    <button>delete</button>
+                <div className='note-delete-and-edit-container'>
+                    {currentNotesArray?.length > 1 && !switchEditNoteBody && (
+                    <button className='edit-button' title='Delete Note'id='delete-note' onClick={() => deleteNoteItem(noteItem[0]?.id)}><i class="fa-solid fa-fire fire-button margin-delete"></i>Delete</button>
+                    )}
                     {switchEditNoteBody && currentNote ? (
-                        <button onClick={() => onNoteEditSubmit()}>save</button>
+                        <button disabled={editNoteBody.length < 1
+                            || editNoteName < 1
+                            || new Array(editNoteName.length).fill(' ').join('') === editNoteName
+                            || new Array(editNoteBody.length).fill(' ').join('') === editNoteBody}
+                            onClick={() => onNoteEditSubmit()}
+                            className='edit-button'><i class="fa-regular fa-floppy-disk edit-pencil"></i> Save</button>
                     ) : (
-                    <button onClick={() => setSwitchEditNoteBody(true)}>edit</button>
+                    <button className='edit-button' onClick={() => setSwitchEditNoteBody(true)} title='Edit Note'><i class="fa-regular fa-file-lines edit-pencil"></i> Edit</button>
                     )}
                 </div>
             </div>
