@@ -13,8 +13,10 @@ def seed_notebooks():
         name= 'Stupid Theories', user_id= 3, trash=True)
     notebook6 = Notebook(
         name= 'Great Ideas', user_id= 3)
+    notebook7 = Notebook(
+        name= 'Welcome!', user_id= 1)
 
-    notebooks = [notebook1, notebook2, notebook3, notebook4, notebook5, notebook6]
+    notebooks = [notebook1, notebook2, notebook3, notebook4, notebook5, notebook6, notebook7]
 
     for notebook in notebooks:
         db.session.add(notebook)
