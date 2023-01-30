@@ -280,3 +280,24 @@ button {
 .register-link-words {
     font-size: 12px;
 }
+
+.signup-input {
+    display: flex;
+    width: 20rem;
+    justify-content: space-between;
+    margin: .2rem 1rem;
+}
+
+.signup-button {
+    width: 90%;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    padding: 3px;
+    background-color: rgba(211, 211, 211, .2);
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.signup-button:hover {
+    background-color: lightgrey;
+}

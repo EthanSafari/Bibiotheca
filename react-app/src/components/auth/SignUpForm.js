@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 
 const SignUpForm = () => {
@@ -48,13 +48,19 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
+    <div className='not-logged-in'>
+
+    <form onSubmit={onSignUp} className='login-signup'>
+    <img src='https://th.bing.com/th/id/R.3d328148c3a9233908abcfdb70d50054?rik=Qn52TFs0brJ9Lw&riu=http%3a%2f%2fclipart-library.com%2fimages_k%2fopen-book-transparent-background%2fopen-book-transparent-background-10.png&ehk=qE1MFU8x43ler4lDf9xKsTgXQM42qy5WTEsZtDavo8s%3d&risl=&pid=ImgRaw&r=0' className='bibliotheca-logo-png' />
+          <div className='bibliotheca-login-welcome'>
+            Welcome to Bibliotheca!
+          </div>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <div>
+      <div className='signup-input'>
         <label>User Name</label>
         <input
           type='text'
@@ -63,7 +69,7 @@ const SignUpForm = () => {
           value={username}
         ></input>
       </div>
-      <div>
+      <div className='signup-input'>
         <label>First Name</label>
         <input
           type='text'
@@ -72,7 +78,7 @@ const SignUpForm = () => {
           value={firstName}
         ></input>
       </div>
-      <div>
+      <div className='signup-input'>
         <label>Email</label>
         <input
           type='text'
@@ -81,7 +87,7 @@ const SignUpForm = () => {
           value={email}
         ></input>
       </div>
-      <div>
+      <div className='signup-input'>
         <label>Password</label>
         <input
           type='password'
@@ -90,7 +96,7 @@ const SignUpForm = () => {
           value={password}
         ></input>
       </div>
-      <div>
+      <div className='signup-input'>
         <label>Repeat Password</label>
         <input
           type='password'
@@ -100,8 +106,20 @@ const SignUpForm = () => {
           required={true}
         ></input>
       </div>
-      <button type='submit'>Sign Up</button>
+      <button type='submit'
+      className='signup-button'>Sign Up</button>
+    <div className='register-link'>
+            <div className='register-link-words'>
+              Already organizing your thoughts?
+            </div>
+            <div className='register-link-words'>
+              <NavLink to={'/login'}>
+                Login here!
+              </NavLink>
+            </div>
+          </div>
     </form>
+    </div>
   );
 };
 
