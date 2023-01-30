@@ -203,3 +203,80 @@ button {
     display: flex;
     justify-content: space-between;
 }
+
+.not-logged-in {
+    background-image: url(https://www.highlysprungsofas.co.uk/wp-content/uploads/2016/03/HSS00A9.png);
+    background-position: center;
+    background-size: contain;
+    background-color: rgba(0, 0, 0, .7);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-signup {
+    background-color: white;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 1rem;
+    border-radius: 5px;
+}
+
+.login-signup-input {
+    display: flex;
+    justify-content: space-between;
+    margin: .2rem 1rem;
+    width: 17rem;
+}
+
+.bibliotheca-login-welcome {
+    font-size: 20px;
+    margin-bottom: 2rem;
+    border-bottom: 1px double black;
+}
+
+.bibliotheca-logo-png {
+    width: 150px;
+    margin-bottom: 15px;
+}
+
+.login-buttons {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    border-radius: 5px;
+}
+
+.login-button {
+    padding: 3px;
+    background-color: rgba(211, 211, 211, .2);
+    border: 1px solid black;
+}
+
+#login {
+    border-radius: 5px 5px 0 0;
+}
+
+#demo-login {
+    border-radius: 0 0 5px 5px;
+}
+
+.login-button:hover {
+    background-color: lightgrey;
+}
+
+.register-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-link-words {
+    font-size: 12px;
+}
