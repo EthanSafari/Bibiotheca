@@ -70,7 +70,7 @@ const CurrentOptionMenu = ({ notebooks, notes }) => {
                     <form onSubmit={handleSubmit} className='new-notebook'>
                         <input
                             type='text'
-                            placeholder={'Please enter a valid name'}
+                            placeholder={'Please enter a valid name*'}
                             value={newNotebook}
                             onChange={e => setNewNotebook(e.target.value)}
                             required
@@ -97,7 +97,8 @@ const CurrentOptionMenu = ({ notebooks, notes }) => {
                                 <div onClick={() => getCurrentNotebook(notebook.id)}>
                                     <div className='notebook-list-item-name'>{notebook.name}</div>
                                 </div>
-                                {notebooks.length > 1 && <button className='delete-button' title='Delete Notebook' onClick={() => deleteNotebookById(notebook.id)}><i class="fa-solid fa-fire fire-button"></i></button>}
+                                {notebooks.length > 1 && <button className='delete-button' title='Delete Notebook'
+                                    onClick={() => deleteNotebookById(notebook.id)}><i class="fa-solid fa-fire fire-button"></i></button>}
                             </div>
                         ))}
                     </div>
@@ -110,7 +111,7 @@ const CurrentOptionMenu = ({ notebooks, notes }) => {
                         <form onSubmit={handleNewNoteSubmit} className='new-notebook'>
                             <input
                                 type='text'
-                                placeholder={'Please enter a valid name'}
+                                placeholder={'Please enter a valid name*'}
                                 value={newNoteItemName}
                                 onChange={e => setNewNoteItemName(e.target.value)}
                                 required

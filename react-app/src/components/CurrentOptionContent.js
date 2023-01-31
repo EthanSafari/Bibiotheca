@@ -65,7 +65,7 @@ const CurrentOptionContent = () => {
     };
 
     const deleteNoteItem = (noteId) => {
-        dispatch(burnNote(noteId))
+        dispatch(burnNote(noteId));
     };
 
     return (
@@ -75,12 +75,15 @@ const CurrentOptionContent = () => {
                     <form onSubmit={handleSubmit}>
                         <input
                             type='text'
-                            placeholder={'Please enter a valid name'}
+                            placeholder={'Please enter a valid name*'}
                             value={editNotebookName}
                             onChange={e => setEditNotebookName(e.target.value)}
                             required
                         />
-                        <button disabled={editNotebookName?.length < 1 || new Array(editNotebookName?.length).fill(' ').join('') === editNotebookName}>Save</button>
+                        <button className='edit-button notebook-edit'
+                            disabled={editNotebookName?.length < 1 || new Array(editNotebookName?.length).fill(' ').join('') === editNotebookName}>
+                            <i class="fa-regular fa-floppy-disk edit-pencil"></i> Save
+                        </button>
                     </form>
                 ) : (
                     <div className='edit-name'>
@@ -92,7 +95,7 @@ const CurrentOptionContent = () => {
                     <form>
                         <input
                             type='text'
-                            placeholder={'Please enter a valid name'}
+                            placeholder={'Please enter a valid name*'}
                             value={editNoteName}
                             onChange={e => setEditNoteName(e.target.value)}
                             required
@@ -104,7 +107,7 @@ const CurrentOptionContent = () => {
                 )}
                 <div className='note-delete-and-edit-container'>
                     {currentNotesArray?.length > 1 && !switchEditNoteBody && (
-                    <button className='edit-button' title='Delete Note'id='delete-note' onClick={() => deleteNoteItem(noteItem[0]?.id)}><i class="fa-solid fa-fire fire-button margin-delete"></i>Delete</button>
+                        <button className='edit-button' title='Delete Note' id='delete-note' onClick={() => deleteNoteItem(noteItem[0]?.id)}><i class="fa-solid fa-fire fire-button margin-delete"></i>Delete</button>
                     )}
                     {switchEditNoteBody && currentNote ? (
                         <button disabled={editNoteBody.length < 1
@@ -114,7 +117,7 @@ const CurrentOptionContent = () => {
                             onClick={() => onNoteEditSubmit()}
                             className='edit-button'><i class="fa-regular fa-floppy-disk edit-pencil"></i> Save</button>
                     ) : (
-                    <button className='edit-button' onClick={() => setSwitchEditNoteBody(true)} title='Edit Note'><i class="fa-regular fa-file-lines edit-pencil"></i> Edit</button>
+                        <button className='edit-button' onClick={() => setSwitchEditNoteBody(true)} title='Edit Note'><i class="fa-regular fa-file-lines edit-pencil"></i> Edit</button>
                     )}
                 </div>
             </div>
@@ -123,7 +126,7 @@ const CurrentOptionContent = () => {
                     <form>
                         <textarea
                             type='text'
-                            placeholder={'Please enter youre thoughts here...'}
+                            placeholder={'* No one has an empty head. Even the most unhinged of minds contain at least a single thought. I would suggest you enter yours here. *'}
                             value={editNoteBody}
                             onChange={e => setEditNoteBody(e.target.value)}
                             required

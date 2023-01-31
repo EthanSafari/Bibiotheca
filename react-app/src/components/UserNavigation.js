@@ -9,10 +9,10 @@ const UserNavigation = () => {
             <div className='hello-user'>
                 <div >
                     Hello, {sessionUser.firstName}
-                    </div>
-                    <div>
+                </div>
+                <div>
                     <LogoutButton />
-                    </div>
+                </div>
             </div>
             <div>
 
