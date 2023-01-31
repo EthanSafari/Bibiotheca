@@ -3,6 +3,7 @@ const LOAD_SINGLE_NOTE = 'notes/loadOneNote';
 const ADD_NOTE = 'notes/addNote';
 const EDIT_NOTE = 'notes/editNote';
 const DELETE_NOTE = 'notes/deleteNote';
+const CLEAR_NOTES = 'notes/clearNotes';
 
 
 export const loadAllNotes = (notes) => {
@@ -37,6 +38,12 @@ export const deleteNote = (noteId) => {
     return {
         type: DELETE_NOTE,
         noteId,
+    };
+};
+
+export const clearNotes = () => {
+    return {
+        type: CLEAR_NOTES,
     };
 };
 
@@ -131,6 +138,10 @@ const noteReducer = (state = intialState, action) => {
             newState = { allNotes: {...state.allNotes}, oneNote: {...state.oneNote} };
             delete newState.allNotes[action.noteId];
             delete newState.oneNote[action.noteId];
+            return newState;
+
+        case CLEAR_NOTES:
+            newState = { allNotes: {}, oneNote: {} };
             return newState;
 
         default:

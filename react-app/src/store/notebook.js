@@ -4,6 +4,7 @@ const LOAD_SINGLE_NOTEBOOK = 'notebooks/loadOneNotebook';
 const ADD_NOTEBOOK = 'notebooks/addNotebook';
 const EDIT_NOTEBOOK = 'notebooks/editNotebook';
 const DELETE_NOTEBOOK = 'notebooks/deleteNotebook';
+const CLEAR_NOTEBOOKS = 'notebooks/clearNotebooks';
 
 
 export const loadAllNotebooks = (notebooks) => {
@@ -41,6 +42,11 @@ export const deleteNotebook = (notebookId) => {
     };
 };
 
+export const clearNotebooks = () => {
+    return {
+        type: CLEAR_NOTEBOOKS,
+    };
+};
 
 
 export const getAllNotebooks = (userId) => async (dispatch) => {
@@ -143,6 +149,10 @@ const notebookReducer = (state = intialState, action) => {
             newState = { allNotebooks: {...state.allNotebooks}, oneNotebook: {...state.oneNotebook} };
             delete newState.allNotebooks[action.notebookId];
             delete newState.oneNotebook[action.notebookId];
+            return newState;
+
+        case CLEAR_NOTEBOOKS:
+            newState = { allNotebooks: {}, oneNotebook: {} };
             return newState;
 
         default:
