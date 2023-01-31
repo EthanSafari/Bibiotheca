@@ -40,7 +40,9 @@ const LoginForm = () => {
           </div>
           <div>
             {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
+              <div className='error-list built-in'>
+                <div className='error' key={ind}>{error}</div>
+              </div>
             ))}
           </div>
           <div className='login-signup-input'>

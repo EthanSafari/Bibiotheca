@@ -283,7 +283,7 @@ button {
 
 .signup-input {
     display: flex;
-    width: 20rem;
+    width: 21rem;
     justify-content: space-between;
     margin: .2rem 1rem;
 }
@@ -300,4 +300,19 @@ button {
 
 .signup-button:hover {
     background-color: lightgrey;
+}
+
+.error {
+    color: red;
+}
+
+.error-list {
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+    width: 19rem;
+}
+
+.built-in {
+    display: flex;
+    justify-content: center;
 }
