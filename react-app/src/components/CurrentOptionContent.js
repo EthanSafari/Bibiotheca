@@ -134,7 +134,7 @@ const CurrentOptionContent = () => {
                         />
                     </form>
                 ) : (
-                    <div>{noteItem[0]?.body}</div>
+                    <div className='note-body-container'>{noteItem[0]?.body}</div>
                 )}
             </div>
         </div >

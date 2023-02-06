@@ -18,6 +18,8 @@ const HomepageLoggedIn = () => {
     const notebookArray = userNotebooks ? Object.values(userNotebooks) : null;
     const noteArray = userNotebookNotes ? Object.values(userNotebookNotes) : null;
 
+    let noteArrayCopy = noteArray[0] ? noteArray[0] : null;
+
     useEffect(() => {
         dispatch(getSingleNotebook(notebookArray[0]?.id));
         dispatch(getAllNotes(notebookArray[0]?.id));
@@ -25,7 +27,7 @@ const HomepageLoggedIn = () => {
 
     useEffect(() => {
         dispatch(getSingleNote(noteArray[0]?.id));
-    }, [noteArray.length]);
+    }, [noteArray.length, noteArrayCopy]);
 
     return (
         <div className='homepage'>

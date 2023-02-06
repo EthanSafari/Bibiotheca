@@ -331,3 +331,11 @@ button {
     border-radius: 3px;
 
 }
+
+.note-body-container {
+    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+    word-break: break-word;
+}
