@@ -17,22 +17,22 @@ const CurrentOptionMenu = ({ notebooks, notes }) => {
     const [newNoteItemName, setNewNoteItemName] = useState('');
     const [addNewNote, setAddNewNote] = useState(false);
 
-    const getCurrentNotebook = (notebookId) => {
-        dispatch(getSingleNotebook(notebookId));
-        dispatch(getAllNotes(notebookId));
+    const getCurrentNotebook = async (notebookId) => {
+        await dispatch(getSingleNotebook(notebookId));
+        await dispatch(getAllNotes(notebookId));
     };
 
-    const deleteNotebookById = (notebookId) => {
-        dispatch(burnNotebook(notebookId));
+    const deleteNotebookById = async (notebookId) => {
+        await dispatch(burnNotebook(notebookId));
     };
 
-    const getCurrentNote = (noteId) => {
-        dispatch(getSingleNote(noteId));
+    const getCurrentNote = async (noteId) => {
+        await dispatch(getSingleNote(noteId));
     };
 
     const currentNotebook = currentNotebookObj ? Object.values(currentNotebookObj) : null;
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const newNotebookItem = {
@@ -41,12 +41,12 @@ const CurrentOptionMenu = ({ notebooks, notes }) => {
             user_id: sessionUser.id,
         };
 
-        dispatch(createNotebook(newNotebookItem, sessionUser.id));
+        await dispatch(createNotebook(newNotebookItem, sessionUser.id));
         setNewNotebook('');
         setAddNewNotebook(false);
     };
 
-    const handleNewNoteSubmit = (e) => {
+    const handleNewNoteSubmit = async (e) => {
         e.preventDefault();
 
         const newNoteItem = {
@@ -57,7 +57,7 @@ const CurrentOptionMenu = ({ notebooks, notes }) => {
             notebook_id: currentNotebook[0]?.id
         };
 
-        dispatch(newNote(newNoteItem));
+        await dispatch(newNote(newNoteItem));
         setNewNoteItemName('');
         setAddNewNote(false);
     };
