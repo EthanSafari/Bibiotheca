@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .note_tag import note_tags
 
 class Note(db.Model):
     __tablename__ = 'notes'
@@ -15,7 +16,7 @@ class Note(db.Model):
 
     user = db.relationship('User', back_populates='notes')
     notebook = db.relationship('Notebook', back_populates='notes')
-    tags = db.relationship('Tag', back_populates='note')
+    tags = db.relationship('Tag', secondary=note_tags, back_populates="notes")
 
     def to_dict(self):
         return {
