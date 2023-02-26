@@ -18,5 +18,4 @@ class Tag(db.Model):
             'id': self.id,
             'name': self.name,
             'userId': self.user_id,
-            'noteId': self.note_id
         }
