@@ -69,4 +69,46 @@ export const getSingleTag = (tagId) => async (dispatch) => {
     };
 };
 
+export const createTag = (tag) => async (dispatch) => {
+    const res = await fetch(`/api/tags`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(tag),
+    });
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(addNewTag(data));
+        return data;
+    };
+};
 
+export const editTag = (tag) => async dispatch => {
+    const res = await fetch(`/api/tags/${tag.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(tag),
+    });
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(editUserTag(data));
+        return data;
+    };
+};
+
+export const deleteTag = (tagId) => async dispatch => {
+    const res = await fetch(`/api/tags/${tagId}`, {
+        method: 'DELETE'
+    });
+    if (res.ok) {
+        const data = res.json();
+        dispatch(deleteSingleTag(tagId));
+        return data;
+    };
+};
+
+
+
+const intialState = { allTags: {}, oneTag: {} };
+const tagReducer = (state = intialState, action) => {
+    
+}
