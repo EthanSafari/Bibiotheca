@@ -110,5 +110,45 @@ export const deleteTag = (tagId) => async dispatch => {
 
 const intialState = { allTags: {}, oneTag: {} };
 const tagReducer = (state = intialState, action) => {
-    
+    let newState;
+    switch (action.type) {
+        case LOAD_TAGS:
+            newState = { allTags: {}, oneTag: {...state.oneTag} };
+            action.tags.tags.forEach(tag => {
+                newState.allTags[tag.id] = tag;
+            });
+            return newState;
+
+        case LOAD_SINGLE_TAG:
+            newState = { allTags: {...state.allTags}, oneTag: {} };
+            newState.oneTag[action.tag.id] = action.tag;
+            return newState;
+
+        case ADD_TAG:
+            newState = { allTags: {...state.allTags}, oneTag: {...state.oneTag} };
+            newState.allTags[action.tag.id] = action.tag;
+            newState.oneTag[action.tag.id] = action.tag;
+            return newState;
+
+        case EDIT_TAG:
+            newState = { allTags: {...state.allTags}, oneTag: {...state.oneTag} };
+            newState.allTags[action.tag.id] = action.tag;
+            newState.oneTag[action.tag.id] = action.tag;
+            return newState
+
+        case DELETE_TAG:
+            newState = { allTags: {...state.allTags}, oneTag: {...state.oneTag} };
+            delete newState.allTags[action.tagId];
+            delete newState.oneTag[action.tagId];
+            return newState;
+
+        case CLEAR_TAGS:
+            newState = { allTags: {}, oneTag: {} };
+            return newState;
+
+        default:
+            return state;
+    }
 }
+
+export default tagReducer;
