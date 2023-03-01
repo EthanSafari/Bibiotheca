@@ -18,4 +18,5 @@ class Tag(db.Model):
             'id': self.id,
             'name': self.name,
             'userId': self.user_id,
+            'notes': [note.to_dict() for note in self.notes],
         }

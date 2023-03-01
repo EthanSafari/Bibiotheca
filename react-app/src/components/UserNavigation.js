@@ -7,7 +7,7 @@ const UserNavigation = () => {
     return (
         <div className='user-nav'>
             <div className='hello-user'>
-                <div >
+                <div>
                     Hello, {sessionUser.firstName}
                 </div>
                 <div>
@@ -18,7 +18,7 @@ const UserNavigation = () => {
 
             </div>
             <div>
-
+                Tags
             </div>
         </div>
     );

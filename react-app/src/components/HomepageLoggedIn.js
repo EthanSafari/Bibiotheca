@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllNotes, getSingleNote } from '../store/note';
 import { getAllNotebooks, getSingleNotebook } from '../store/notebook';
+import { getAllTags } from '../store/tag';
 import CurrentOptionMenu from './CurrentOptionMenu';
 import UserNavigation from './UserNavigation';
 
@@ -13,6 +14,7 @@ const HomepageLoggedIn = () => {
 
     useEffect(() => {
         dispatch(getAllNotebooks(sessionUser.id));
+        dispatch(getAllTags(sessionUser.id));
     }, [dispatch]);
 
     const notebookArray = userNotebooks ? Object.values(userNotebooks) : null;
