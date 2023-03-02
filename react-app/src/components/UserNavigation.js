@@ -4,6 +4,7 @@ import LogoutButton from './auth/LogoutButton';
 
 const UserNavigation = () => {
     const sessionUser = useSelector(state => state.session.user);
+    const userTags = useSelector(state => state.session.tags);
     return (
         <div className='user-nav'>
             <div className='hello-user'>
