@@ -22,10 +22,10 @@ const UserNavigation = () => {
 
             </div>
             <div>
-                <div>Browser</div>
+                {/* <div>Browser</div>
                 <div onClick={() => setOption('notebooks')}>Notebooks</div>
                 <div onClick={() => setOption('tags')}>Tags</div>
-                <div onClick={() => setOption('notes')}>Notes</div>
+                <div onClick={() => setOption('notes')}>Notes</div> */}
             </div>
         </div>
     );
