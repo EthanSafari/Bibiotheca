@@ -25,6 +25,7 @@ const UserNavigation = () => {
                 <div>Browser</div>
                 <div onClick={() => setOption('notebooks')}>Notebooks</div>
                 <div onClick={() => setOption('tags')}>Tags</div>
+                <div onClick={() => setOption('notes')}>Notes</div>
             </div>
         </div>
     );

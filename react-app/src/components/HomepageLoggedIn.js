@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { OptionContext } from '../context/OptionContext';
 import { getAllNotes, getSingleNote } from '../store/note';
@@ -12,8 +12,6 @@ const HomepageLoggedIn = () => {
     const sessionUser = useSelector(state => state.session.user);
     const userNotebooks = useSelector(state => state.notebooks.allNotebooks);
     const userNotebookNotes = useSelector(state => state.notes.allNotes);
-
-    const { option } = useContext(OptionContext);
 
     useEffect(() => {
         dispatch(getAllNotebooks(sessionUser.id));
@@ -37,8 +35,7 @@ const HomepageLoggedIn = () => {
     return (
         <div className='homepage'>
             <UserNavigation />
-            {option === 'notebooks' &&
-            <CurrentOptionMenu notebooks={notebookArray} notes={noteArray} />}
+            <CurrentOptionMenu notebooks={notebookArray} notes={noteArray} />
         </div>
     );
 };
