@@ -37,7 +37,8 @@ const HomepageLoggedIn = () => {
     return (
         <div className='homepage'>
             <UserNavigation />
-            {option === 'notebooks' && <CurrentOptionMenu notebooks={notebookArray} notes={noteArray} />}
+            {option === 'notebooks' &&
+            <CurrentOptionMenu notebooks={notebookArray} notes={noteArray} />}
         </div>
     );
 };
