@@ -339,3 +339,13 @@ button {
     height: 100%;
     word-break: break-word;
 }
+
+.browser {
+    height: 94.9vh;
+    width: 85%;
+    margin-left: .5rem;
+    padding: .3rem;
+    display: flex;
+    border-radius: 3px;
+    background-color: white;
+}

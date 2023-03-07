@@ -35,5 +35,8 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'firstName': self.first_name
+            'firstName': self.first_name,
+            'notebooks': [notebook.to_dict() for notebook in self.notebooks],
+            'notes': [note.to_dict() for note in self.notes],
+            'tags': [tag.to_dict() for tag in self.tags]
         }

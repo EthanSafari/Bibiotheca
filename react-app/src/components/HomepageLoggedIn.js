@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { OptionContext } from '../context/OptionContext';
 import { getAllNotes, getSingleNote } from '../store/note';
 import { getAllNotebooks, getSingleNotebook } from '../store/notebook';
 import { getAllTags } from '../store/tag';
+import BrowserItems from './BrowserItems';
 import CurrentOptionMenu from './CurrentOptionMenu';
 import UserNavigation from './UserNavigation';
 
@@ -12,6 +13,8 @@ const HomepageLoggedIn = () => {
     const sessionUser = useSelector(state => state.session.user);
     const userNotebooks = useSelector(state => state.notebooks.allNotebooks);
     const userNotebookNotes = useSelector(state => state.notes.allNotes);
+
+    const { option, setOption } = useContext(OptionContext);
 
     useEffect(() => {
         dispatch(getAllNotebooks(sessionUser.id));
@@ -35,7 +38,8 @@ const HomepageLoggedIn = () => {
     return (
         <div className='homepage'>
             <UserNavigation />
-            <CurrentOptionMenu notebooks={notebookArray} notes={noteArray} />
+            {option === 'home' && <CurrentOptionMenu notebooks={notebookArray} notes={noteArray} />}
+            {option !== 'home' && <BrowserItems />}
         </div>
     );
 };
