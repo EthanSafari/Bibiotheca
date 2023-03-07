@@ -3,16 +3,18 @@ import { useSelector } from "react-redux";
 import { OptionContext } from "../context/OptionContext"
 
 const BrowserItems = () => {
-    const sessionUser = useSelector(state => state.session.user);
+    const sessionNotebooks = useSelector(state => state.notebooks.allNotebooks);
+    const sessionTags = useSelector(state => state.tags.allTags);
     const { option, setOption, optionContent, setOptionContent } = useContext(OptionContext);
 
     useEffect(() => {
         if (option === 'tags')
-            setOptionContent(Object.values(sessionUser.tags));
+            setOptionContent(Object.values(sessionTags));
         else if (option === 'notebooks')
-            setOptionContent(Object.values(sessionUser.notebooks));
+            setOptionContent(Object.values(sessionNotebooks));
         else if (option === 'notes')
-            setOptionContent(Object.values(sessionUser.notes));
+            // setOptionContent(Object.values(sessionUser.notes));
+            console.log('this is notes')
         else
             setOptionContent([]);
     }, [option]);
