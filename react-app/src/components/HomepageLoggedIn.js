@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { OptionContext } from '../context/OptionContext';
-import { getAllNotes, getSingleNote } from '../store/note';
+import { getAllNotes, getAllUserNotes, getSingleNote } from '../store/note';
 import { getAllNotebooks, getSingleNotebook } from '../store/notebook';
 import { getAllTags } from '../store/tag';
 import BrowserItems from './BrowserItems';
@@ -19,6 +19,7 @@ const HomepageLoggedIn = () => {
     useEffect(() => {
         dispatch(getAllNotebooks(sessionUser.id));
         dispatch(getAllTags(sessionUser.id));
+        dispatch(getAllUserNotes(sessionUser.id));
     }, [dispatch]);
 
     const notebookArray = userNotebooks ? Object.values(userNotebooks) : null;
@@ -28,7 +29,7 @@ const HomepageLoggedIn = () => {
 
     useEffect(() => {
         dispatch(getSingleNotebook(notebookArray[0]?.id));
-        dispatch(getAllNotes(notebookArray[0]?.id));
+        dispatch(getAllNotes(notebookArray[0]?.id, sessionUser.id));
     }, [notebookArray.length]);
 
     useEffect(() => {

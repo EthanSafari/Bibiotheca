@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { clearNotes } from '../../store/note';
 import { clearNotebooks } from '../../store/notebook';
 import { logout } from '../../store/session';
+import { clearTags } from '../../store/tag';
 
 const LogoutButton = () => {
   const dispatch = useDispatch()
@@ -10,6 +11,7 @@ const LogoutButton = () => {
     await dispatch(logout());
     await dispatch(clearNotebooks());
     await dispatch(clearNotes());
+    await dispatch(clearTags());
   };
 
   return <button className='edit-button' onClick={onLogout}><i class="fa-solid fa-right-from-bracket edit-pencil"></i></button>;

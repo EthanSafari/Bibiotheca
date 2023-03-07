@@ -46,7 +46,7 @@ def get_notebooks_by_user_id(id):
 @login_required
 def get_notes_by_user_id(id):
     notes = Note.query.filter(Note.user_id == id).all()
-    return { 'notes' : [note.to_dict() for note in notes] }
+    return { 'userNotes' : [note.to_dict() for note in notes] }
 
 @user_routes.route('/<int:id>/tags')
 @login_required

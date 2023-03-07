@@ -5,6 +5,7 @@ import { OptionContext } from "../context/OptionContext"
 const BrowserItems = () => {
     const sessionNotebooks = useSelector(state => state.notebooks.allNotebooks);
     const sessionTags = useSelector(state => state.tags.allTags);
+    const sessionNotes = useSelector(state => state.notes.userNotes);
     const { option, setOption, optionContent, setOptionContent } = useContext(OptionContext);
 
     useEffect(() => {
@@ -13,8 +14,7 @@ const BrowserItems = () => {
         else if (option === 'notebooks')
             setOptionContent(Object.values(sessionNotebooks));
         else if (option === 'notes')
-            // setOptionContent(Object.values(sessionUser.notes));
-            console.log('this is notes')
+            setOptionContent(Object.values(sessionNotes));
         else
             setOptionContent([]);
     }, [option]);
