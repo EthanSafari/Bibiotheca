@@ -1,5 +1,7 @@
+import datetime
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from .note_tag import note_tags
+
 
 class Note(db.Model):
     __tablename__ = 'notes'
@@ -11,6 +13,8 @@ class Note(db.Model):
     name = db.Column(db.String(255), nullable=False)
     body = db.Column(db.String(10000), nullable=False)
     trash = db.Column(db.Boolean, default=False, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     notebook_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('notebooks.id')), nullable=False)
 
@@ -23,7 +27,7 @@ class Note(db.Model):
             'id': self.id,
             'name': self.name,
             'body': self.body,
-            'trash': self.trash,
+            'trash': self.trash, 
             'userId': self.user_id,
             'notebookId': self.notebook_id
         }
