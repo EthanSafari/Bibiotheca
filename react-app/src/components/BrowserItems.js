@@ -3,10 +3,11 @@ import { useSelector } from "react-redux";
 import { OptionContext } from "../context/OptionContext"
 
 const BrowserItems = () => {
+    const sessionUser = useSelector(state => state.session.user);
     const sessionNotebooks = useSelector(state => state.notebooks.allNotebooks);
     const sessionTags = useSelector(state => state.tags.allTags);
     const sessionNotes = useSelector(state => state.notes.userNotes);
-    const { option, setOption, optionContent, setOptionContent } = useContext(OptionContext);
+    const { option, optionContent, setOptionContent, currentOption, setCurrentOption } = useContext(OptionContext);
 
     useEffect(() => {
         if (option === 'tags')
@@ -20,9 +21,12 @@ const BrowserItems = () => {
     }, [option]);
     return (
         <div className="browser">
-            {option}
+            <div className="browser-choice">
+            {`${sessionUser.firstName.toUpperCase() + 'S' + "'"} ${option.toUpperCase()}`}
+            </div>
+            {console.log(currentOption)}
             {optionContent.map(optionItem => (
-                <div>
+                <div onClick={() => setCurrentOption(optionItem)}>
                     {optionItem.name}
                 </div>
             ))}

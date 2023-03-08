@@ -344,8 +344,17 @@ button {
     height: 94.9vh;
     width: 85%;
     margin-left: .5rem;
-    padding: .3rem;
+    padding: .83rem;
     display: flex;
     border-radius: 3px;
     background-color: white;
+    flex-direction: column;
+}
+
+.browser-choice {
+    border-bottom: 1px solid rgba(0, 0, 0, .7);
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
 }
