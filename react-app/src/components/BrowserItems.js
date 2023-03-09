@@ -21,15 +21,26 @@ const BrowserItems = () => {
     }, [option]);
     return (
         <div className="browser">
-            <div className="browser-choice">
-            {`${sessionUser.firstName.toUpperCase() + 'S' + "'"} ${option.toUpperCase()}`}
-            </div>
             {console.log(currentOption)}
-            {optionContent.map(optionItem => (
-                <div onClick={() => setCurrentOption(optionItem)}>
-                    {optionItem.name}
+            <div className="browser-choice">
+                {`${sessionUser.firstName.toUpperCase() + 'S' + "'"} ${option.toUpperCase()}`}
+            </div>
+            <div className="browser-details">
+                <div className="option-list">   
+                <div className="option-list-item">
+                    {optionContent.map(optionItem => (
+                        <div key={optionItem.id} onClick={() => setCurrentOption(optionItem)}>
+                            {optionItem.name}
+                        </div>
+                    ))}
                 </div>
-            ))}
+                </div>
+                <div className="option-details">
+                    <div>
+                        {currentOption ? currentOption.name : 'Click on an option to see details of it!'}
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

@@ -28,6 +28,8 @@ class Note(db.Model):
             'name': self.name,
             'body': self.body,
             'trash': self.trash, 
+            'createdAt': self.created_at,
+            'updatedAt': self.updated_at,
             'userId': self.user_id,
             'notebookId': self.notebook_id
         }

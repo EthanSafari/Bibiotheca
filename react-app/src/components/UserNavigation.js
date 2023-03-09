@@ -20,15 +20,24 @@ const UserNavigation = () => {
             <div>
 
             </div>
-            <div>
-                <div>Browser</div>
+            <div className='browser-user-nav'>
+                <div className='browser-heading'>Browser</div>
                 <div onClick={() => {
-                    setOption('home')
-                    setCurrentOption({})
-                    }}>Home</div>
-                <div onClick={() => setOption('notebooks')}>Notebooks</div>
-                <div onClick={() => setOption('tags')}>Tags</div>
-                <div onClick={() => setOption('notes')}>Notes</div>
+                    setOption('home');
+                    setCurrentOption(null);
+                }}>Home</div>
+                <div onClick={() => {
+                    setOption('notebooks');
+                    setCurrentOption(null);
+                }}>Notebooks</div>
+                <div onClick={() => {
+                    setOption('tags');
+                    setCurrentOption(null);
+                }}>Tags</div>
+                <div onClick={() => {
+                    setOption('notes');
+                    setCurrentOption(null);
+                }}>Notes</div>
             </div>
         </div>
     );

@@ -5,7 +5,7 @@ export const OptionContext = createContext();
 export const OptionProvider = (props) => {
     const [option, setOption] = useState('home');
     const [optionContent, setOptionContent] = useState([]);
-    const [currentOption, setCurrentOption] = useState({});
+    const [currentOption, setCurrentOption] = useState(null);
     return (
         <OptionContext.Provider value={{ 
             option, 

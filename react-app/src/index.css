@@ -25,9 +25,9 @@ button {
     height: 100%;
     /* border: 1px solid black; */
     width: 15%;
-    border-radius: 3px;
+    /* border-radius: 3px;
     background-color: white;
-    padding: 5px;
+    padding: 5px; */
 }
 
 .current-option {
@@ -203,6 +203,24 @@ button {
 .hello-user {
     display: flex;
     justify-content: space-between;
+    border-radius: 3px;
+    background-color: white;
+    padding: 5px;
+    margin-bottom: 1rem;
+}
+
+.browser-user-nav {
+    border-radius: 3px;
+    background-color: white;
+    padding: 5px;
+}
+
+.browser-heading {
+    border-bottom: 1px solid rgba(0, 0, 0, .7);
+    display: flex;
+    justify-content: center;
+    padding-bottom: 3px;
+    margin-bottom: 5px;
 }
 
 .not-logged-in {
@@ -356,5 +374,30 @@ button {
     padding-bottom: 10px;
     display: flex;
     justify-content: center;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
 }
+
+.browser-details {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 .5rem;
+}
+
+.option-list {
+    width: 35%;
+    border-right: 1px solid rgba(0, 0, 0, .7);
+    height: 100;
+    padding-top: 15px;
+}
+
+.option-list-item {
+    padding: 5px;
+}
+
+.option-details {
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    padding-top: 15px
+}
+
