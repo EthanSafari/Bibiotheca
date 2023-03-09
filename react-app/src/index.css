@@ -370,24 +370,28 @@ button {
 }
 
 .browser-choice {
-    border-bottom: 1px solid rgba(0, 0, 0, .7);
-    padding-bottom: 10px;
+    border: 1px solid rgba(0, 0, 0, .7);
+    padding: 10px;
     display: flex;
     justify-content: center;
-    /* margin-bottom: 15px; */
+    margin-bottom: 10px;
+    border-radius: 3px;
 }
 
 .browser-details {
     display: flex;
     justify-content: space-between;
     padding: 0 .5rem;
+    border: 1px solid rgba(0, 0, 0, .7);
+    /* border-top: none; */
+    border-radius: 3px;
 }
 
 .option-list {
     width: 35%;
     border-right: 1px solid rgba(0, 0, 0, .7);
     height: 100;
-    padding-top: 15px;
+    padding: 10px 0;
 }
 
 .option-list-item {
@@ -397,7 +401,7 @@ button {
 .option-details {
     width: 65%;
     display: flex;
-    justify-content: center;
-    padding-top: 15px
+    padding: 15px;
+    flex-direction: column;
 }
 
