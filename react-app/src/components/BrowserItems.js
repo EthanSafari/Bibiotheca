@@ -48,16 +48,28 @@ const BrowserItems = () => {
                     </div>
                 </div>
                 <div className="option-details">
-                    <div>
+                    <div style={{fontSize: '45px', textAlign: 'center'}}>
                         {currentOption ? currentOption.name : `Click on a ${option.slice(0, option.length - 1)} to view its details!`}
                     </div>
                     {currentOption && (
-                        <div>
-                            <div>
-                                Created On: {new Date(currentOption.createdAt).toDateString()}
-                            </div>
-                            <div>
-                                Last Updated: {new Date(currentOption.updatedAt).toDateString()}
+                        <div className="option-date-container">
+                            <div className="option-dates">
+                                <div className="date">
+                                    <div className="twtypxtext">
+                                        Date Created:
+                                    </div>
+                                    <div className="twtypxtext">
+                                        {new Date(currentOption.createdAt).toDateString()}
+                                    </div>
+                                </div>
+                                <div className="date">
+                                    <div className="twtypxtext">
+                                        Last Updated:
+                                    </div>
+                                    <div className="twtypxtext">
+                                        {new Date(currentOption.updatedAt).toDateString()}
+                                    </div>
+                                </div>
                             </div>
                             {option === 'tags' && (
                                 <div>
@@ -85,6 +97,9 @@ const BrowserItems = () => {
                                 <div>
                                     <div>
                                         Belongs to: {Object.values(sessionNotebooks).find(notebook => notebook.id === currentOption.notebookId).name}
+                                    </div>
+                                    <div>
+                                        Total Note Length: {currentOption.body.length} characters
                                     </div>
                                     <div>
                                         {currentOption.body.length > 300 ? (

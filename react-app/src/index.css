@@ -6,6 +6,10 @@
     font-family: 'Roboto Slab', serif;
 }
 
+html, body {
+    height: 100%;
+}
+
 button {
     cursor: pointer;
 }
@@ -376,6 +380,7 @@ button {
     justify-content: center;
     margin-bottom: 10px;
     border-radius: 3px;
+    font-size: 25px;
 }
 
 .browser-details {
@@ -396,12 +401,37 @@ button {
 
 .option-list-item {
     padding: 5px;
+    font-size: 18px;
 }
 
 .option-details {
     width: 65%;
     display: flex;
+    align-items: center;
     padding: 15px;
     flex-direction: column;
 }
 
+.option-dates {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0 30px 0;
+    
+}
+
+.date {
+    display: flex;
+    width: 18rem;
+    justify-content: space-between;
+}
+
+.option-date-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+}
+
+.twtypxtext {
+    font-size: 20px;
+}
