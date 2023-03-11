@@ -50,7 +50,7 @@ const BrowserItems = () => {
                 <div className="option-details">
                     {currentOption ? (
                         <div className="option-date-container">
-                    <div style={{ fontSize: '45px', textAlign: 'center' }}>
+                    <div style={{ fontSize: '45px', textAlign: 'center', maxWidth: '30rem' }}>
                         {currentOption.name}
                     </div>
                             <div className="option-dates">
@@ -96,7 +96,7 @@ const BrowserItems = () => {
                             {option === 'notes' && (
                                 <div className="option-details">
                                     <div className="twtypxtext">
-                                        Belongs to: {Object.values(sessionNotebooks).find(notebook => notebook.id === currentOption.notebookId).name}
+                                        Notebook: {Object.values(sessionNotebooks).find(notebook => notebook.id === currentOption.notebookId).name}
                                     </div>
                                     <div className="twtypxtext mrgbtmtrtypx">
                                         Total Note Length: {currentOption.body.length} characters
@@ -106,22 +106,17 @@ const BrowserItems = () => {
                                             Preview
                                         </div>
                                         <div>
-                                            {currentOption.body.length > 300 ? (
                                                 <div className="cntr">
-                                                    {currentOption.body}...
+                                                    {currentOption.body.slice(0, 799)}...
                                                 </div>
-                                            ) : (
-                                                <div  classname="cntr">
-                                                    {currentOption.body}
-                                                </div>
-                                            )}
+
                                         </div>
                                     </div>
                                 </div>
                             )}
                         </div>
                     ) : (
-                        <div>
+                        <div style={{ fontSize: '45px', textAlign: 'center', maxWidth: '30rem'}}>
                         {`Click on a ${option.slice(0, option.length - 1)} to view its details!`}
                         </div>
                     )}
