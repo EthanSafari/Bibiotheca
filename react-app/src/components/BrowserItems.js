@@ -48,11 +48,11 @@ const BrowserItems = () => {
                     </div>
                 </div>
                 <div className="option-details">
-                    <div style={{fontSize: '45px', textAlign: 'center'}}>
-                        {currentOption ? currentOption.name : `Click on a ${option.slice(0, option.length - 1)} to view its details!`}
-                    </div>
-                    {currentOption && (
+                    {currentOption ? (
                         <div className="option-date-container">
+                    <div style={{ fontSize: '45px', textAlign: 'center' }}>
+                        {currentOption.name}
+                    </div>
                             <div className="option-dates">
                                 <div className="date">
                                     <div className="twtypxtext">
@@ -94,26 +94,35 @@ const BrowserItems = () => {
                                 </div>
                             )}
                             {option === 'notes' && (
-                                <div>
-                                    <div>
+                                <div className="option-details">
+                                    <div className="twtypxtext">
                                         Belongs to: {Object.values(sessionNotebooks).find(notebook => notebook.id === currentOption.notebookId).name}
                                     </div>
-                                    <div>
+                                    <div className="twtypxtext mrgbtmtrtypx">
                                         Total Note Length: {currentOption.body.length} characters
                                     </div>
-                                    <div>
-                                        {currentOption.body.length > 300 ? (
-                                            <div>
-                                                {currentOption.body.slice(0, 299)}...
-                                            </div>
-                                        ) : (
-                                            <div>
-                                                {currentOption.body}
-                                            </div>
-                                        )}
+                                    <div className="note-preview-container">
+                                        <div className="twtypxtext mrgbtmtenpx btmbrdr">
+                                            Preview
+                                        </div>
+                                        <div>
+                                            {currentOption.body.length > 300 ? (
+                                                <div className="cntr">
+                                                    {currentOption.body}...
+                                                </div>
+                                            ) : (
+                                                <div  classname="cntr">
+                                                    {currentOption.body}
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             )}
+                        </div>
+                    ) : (
+                        <div>
+                        {`Click on a ${option.slice(0, option.length - 1)} to view its details!`}
                         </div>
                     )}
                 </div>

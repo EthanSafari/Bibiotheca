@@ -6,8 +6,8 @@
     font-family: 'Roboto Slab', serif;
 }
 
-html, body {
-    height: 100%;
+body {
+    height: 100vh;
 }
 
 button {
@@ -23,6 +23,7 @@ button {
     background-position: center;
     background-size: contain;
     background-color: rgba(0, 0, 0, .7);
+    height: 100vh;
 }
 
 .user-nav {
@@ -35,7 +36,7 @@ button {
 }
 
 .current-option {
-    height: 100%;
+    /* height: 100%; */
     /* border: 1px solid black; */
     width: 85%;
     margin-left: .5rem;
@@ -88,7 +89,7 @@ button {
 .edit-container-area {
     /* border: 1px solid black; */
     border-top: 1px solid rgba(211, 211, 211, .7);
-    height: 53.9rem;
+    /* height: 53.9r? */
     border-radius: 0 0 3px 3px;
     background-color: white;
     padding: 1rem;
@@ -103,6 +104,7 @@ button {
     align-items: center;
     width: 15rem;
     background-color: white;
+    /* height: 100%; */
 }
 
 .notebook-list-item {
@@ -390,6 +392,7 @@ button {
     border: 1px solid rgba(0, 0, 0, .7);
     /* border-top: none; */
     border-radius: 3px;
+    height: 100%;
 }
 
 .option-list {
@@ -405,11 +408,12 @@ button {
 }
 
 .option-details {
-    width: 65%;
+    width: 80%;
     display: flex;
     align-items: center;
     padding: 15px;
     flex-direction: column;
+    justify-content: center;
 }
 
 .option-dates {
@@ -421,7 +425,7 @@ button {
 
 .date {
     display: flex;
-    width: 18rem;
+    width: 18.3rem;
     justify-content: space-between;
 }
 
@@ -430,8 +434,37 @@ button {
     align-items: center;
     width: 100%;
     flex-direction: column;
+    height: 100%;
+    justify-content: center;
 }
 
 .twtypxtext {
     font-size: 20px;
+}
+
+.mrgbtmtrtypx {
+    margin-bottom: 30px;
+}
+
+.mrgbtmtenpx {
+    margin-bottom: 10px;
+}
+
+.note-preview-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, .7);
+    border-radius: 3px;
+    width: 100%;
+    padding: 3rem 2rem;
+    height: fit-content;
+}
+
+.btmbrdr {
+    border-bottom: 1px solid rgba(0, 0, 0, .7);
+}
+
+.cntr {
+    max-width: 30rem;
 }
