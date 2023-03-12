@@ -107,7 +107,7 @@ const BrowserItems = () => {
                                         </div>
                                         <div>
                                                 <div className="cntr">
-                                                    {currentOption.body.slice(0, 799)}...
+                                                    {currentOption.body.slice(0, 299)}...
                                                 </div>
 
                                         </div>
