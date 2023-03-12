@@ -8,14 +8,17 @@ import { newNote } from '../store/note';
 
 const CurrentOptionMenu = ({ notebooks, notes }) => {
     const dispatch = useDispatch();
-    const [addNewNotebook, setAddNewNotebook] = useState(false);
-    const [newNotebook, setNewNotebook] = useState('');
     const sessionUser = useSelector(state => state.session.user);
     const currentNotebookObj = useSelector(state => state.notebooks.oneNotebook);
     // const notTrashedNotebooks = notebooks.filter(notebook => notebook.trash === false); //for when trash feature is implemented
 
+    const [newNotebook, setNewNotebook] = useState('');
+    const [addNewNotebook, setAddNewNotebook] = useState(false);
+
     const [newNoteItemName, setNewNoteItemName] = useState('');
     const [addNewNote, setAddNewNote] = useState(false);
+
+    const [a]
 
     const getCurrentNotebook = async (notebookId) => {
         await dispatch(getSingleNotebook(notebookId));
@@ -142,6 +145,32 @@ const CurrentOptionMenu = ({ notebooks, notes }) => {
                         </div>
                     </div>
                 </div>
+                <div className='note-heading'>
+                    Tags
+                </div>
+                {addNewNote ? (
+                        <form onSubmit={handleNewNoteSubmit} className='new-notebook'>
+                            <input
+                                type='text'
+                                placeholder={'Please enter a valid name*'}
+                                value={newNoteItemName}
+                                onChange={e => setNewNoteItemName(e.target.value)}
+                                required
+                                className='name-input'
+                            />
+                            <button disabled={newNoteItemName.length < 1
+                                || new Array(newNoteItemName.length).fill(' ').join('') === newNoteItemName}
+                                className='add-button'>
+                                Add Note
+                            </button>
+                        </form>
+                    ) : (
+                        <div className='add-note-button-container'>
+                            <button className='edit-button' onClick={() => setAddNewNote(true)}>
+                                + Add Note
+                            </button>
+                        </div>
+                    )}
             </div>
             <div className='current-option-content'>
                 <CurrentOptionContent />
