@@ -48,7 +48,7 @@ const BrowserItems = () => {
                     </div>
                 </div>
                 <div className="option-details">
-                    <div style={{fontSize: '45px', textAlign: 'center'}}>
+                    <div style={{ fontSize: '45px', textAlign: 'center' }}>
                         {currentOption ? currentOption.name : `Click on a ${option.slice(0, option.length - 1)} to view its details!`}
                     </div>
                     {currentOption && (
@@ -72,10 +72,16 @@ const BrowserItems = () => {
                                 </div>
                             </div>
                             {option === 'tags' && (
-                                <div>
-                                    {<div>
-                                        Associated notes:
-                                    </div>}
+                                <div className="associated-notes-container">
+                                    {currentOption.notes.length !== 0 ? (
+                                        <div className="twtypxtext btmbrdr">
+                                            Associated notes:
+                                        </div>
+                                    ) : (
+                                        <div className="twtypxtext">
+                                            This tag is not associated with any notes!
+                                        </div>
+                                    )}
                                     <div>
                                         {currentOption.notes.length > 0 && (
                                             <ListItems arr={currentOption.notes} />
@@ -84,8 +90,8 @@ const BrowserItems = () => {
                                 </div>
                             )}
                             {option === 'notebooks' && (
-                                <div>
-                                    <div>
+                                <div className="associated-notes-container">
+                                    <div className="twtypxtext btmbrdr">
                                         Associated Notes:
                                     </div>
                                     <div>
@@ -106,9 +112,9 @@ const BrowserItems = () => {
                                             Preview
                                         </div>
                                         <div>
-                                                <div className="cntr">
-                                                    {currentOption.body.slice(0, 299)}...
-                                                </div>
+                                            <div className="cntr">
+                                                {currentOption.body.slice(0, 299)}...
+                                            </div>
 
                                         </div>
                                     </div>
