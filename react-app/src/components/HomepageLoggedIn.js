@@ -13,6 +13,7 @@ const HomepageLoggedIn = () => {
     const sessionUser = useSelector(state => state.session.user);
     const userNotebooks = useSelector(state => state.notebooks.allNotebooks);
     const userNotebookNotes = useSelector(state => state.notes.allNotes);
+    const userTags = useSelector(state => state.tags.allTags);
 
     const { option, setOption } = useContext(OptionContext);
 
@@ -24,6 +25,7 @@ const HomepageLoggedIn = () => {
 
     const notebookArray = userNotebooks ? Object.values(userNotebooks) : null;
     const noteArray = userNotebookNotes ? Object.values(userNotebookNotes) : null;
+    const tagsArray = userTags ? Object.values(userTags) : null;
 
     let noteArrayCopy = noteArray[0] ? noteArray[0] : null;
 
@@ -39,7 +41,11 @@ const HomepageLoggedIn = () => {
     return (
         <div className='homepage'>
             <UserNavigation />
-            {option === 'home' && <CurrentOptionMenu notebooks={notebookArray} notes={noteArray} />}
+            {option === 'home' && <CurrentOptionMenu
+                notebooks={notebookArray}
+                notes={noteArray}
+                tags={tagsArray}
+            />}
             {option !== 'home' && <BrowserItems />}
         </div>
     );

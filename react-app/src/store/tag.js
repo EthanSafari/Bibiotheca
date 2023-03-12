@@ -70,7 +70,7 @@ export const getSingleTag = (tagId) => async (dispatch) => {
 };
 
 export const createTag = (tag) => async (dispatch) => {
-    const res = await fetch(`/api/tags`, {
+    const res = await fetch(`/api/tags/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(tag),
@@ -100,7 +100,7 @@ export const deleteTag = (tagId) => async dispatch => {
         method: 'DELETE'
     });
     if (res.ok) {
-        const data = res.json();
+        const data = await res.json();
         dispatch(deleteSingleTag(tagId));
         return data;
     };

@@ -5,8 +5,9 @@ import { getAllNotes, getSingleNote } from '../store/note';
 import { burnNotebook, createNotebook, getSingleNotebook } from '../store/notebook';
 import CurrentOptionContent from './CurrentOptionContent';
 import { newNote } from '../store/note';
+import { createTag, getSingleTag } from '../store/tag';
 
-const CurrentOptionMenu = ({ notebooks, notes }) => {
+const CurrentOptionMenu = ({ notebooks, notes, tags }) => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const currentNotebookObj = useSelector(state => state.notebooks.oneNotebook);
@@ -18,7 +19,8 @@ const CurrentOptionMenu = ({ notebooks, notes }) => {
     const [newNoteItemName, setNewNoteItemName] = useState('');
     const [addNewNote, setAddNewNote] = useState(false);
 
-    const [a]
+    const [newTagName, setNewTagName] = useState('');
+    const [addNewTag, setAddNewTag] = useState(false);
 
     const getCurrentNotebook = async (notebookId) => {
         await dispatch(getSingleNotebook(notebookId));
@@ -33,17 +35,19 @@ const CurrentOptionMenu = ({ notebooks, notes }) => {
         await dispatch(getSingleNote(noteId));
     };
 
+    const getCurrentTag = async (tagId) => {
+        await dispatch(getSingleTag(tagId));
+    };
+
     const currentNotebook = currentNotebookObj ? Object.values(currentNotebookObj) : null;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         const newNotebookItem = {
             name: newNotebook,
             trash: false,
             user_id: sessionUser.id,
         };
-
         await dispatch(createNotebook(newNotebookItem, sessionUser.id));
         setNewNotebook('');
         setAddNewNotebook(false);
@@ -51,7 +55,6 @@ const CurrentOptionMenu = ({ notebooks, notes }) => {
 
     const handleNewNoteSubmit = async (e) => {
         e.preventDefault();
-
         const newNoteItem = {
             name: newNoteItemName,
             trash: false,
@@ -59,10 +62,20 @@ const CurrentOptionMenu = ({ notebooks, notes }) => {
             body: 'Press edit button to display your thoughts here :)',
             notebook_id: currentNotebook[0]?.id
         };
-
         await dispatch(newNote(newNoteItem));
         setNewNoteItemName('');
         setAddNewNote(false);
+    };
+
+    const handleNewTagSubmit = async (e) => {
+        e.preventDefault();
+        const newTagItem = {
+            name: newTagName,
+            user_id: sessionUser.id,
+        };
+        await dispatch(createTag(newTagItem));
+        setNewTagName('');
+        setAddNewTag(false);
     };
 
     return (
@@ -106,6 +119,7 @@ const CurrentOptionMenu = ({ notebooks, notes }) => {
                         ))}
                     </div>
                 </div>
+
                 <div>
                     <div className='note-heading'>
                         Notes
@@ -145,33 +159,47 @@ const CurrentOptionMenu = ({ notebooks, notes }) => {
                         </div>
                     </div>
                 </div>
-                <div className='note-heading'>
-                    Tags
-                </div>
-                {addNewNote ? (
-                        <form onSubmit={handleNewNoteSubmit} className='new-notebook'>
+
+                <div>
+                    <div className='note-heading'>
+                        Tags
+                    </div>
+                    {addNewTag ? (
+                        <form onSubmit={handleNewTagSubmit} className='new-notebook'>
                             <input
                                 type='text'
                                 placeholder={'Please enter a valid name*'}
-                                value={newNoteItemName}
-                                onChange={e => setNewNoteItemName(e.target.value)}
+                                value={newTagName}
+                                onChange={e => setNewTagName(e.target.value)}
                                 required
                                 className='name-input'
                             />
-                            <button disabled={newNoteItemName.length < 1
-                                || new Array(newNoteItemName.length).fill(' ').join('') === newNoteItemName}
+                            <button disabled={newTagName.length < 1
+                                || new Array(newTagName.length).fill(' ').join('') === newTagName}
                                 className='add-button'>
-                                Add Note
+                                Add Tag
                             </button>
                         </form>
                     ) : (
                         <div className='add-note-button-container'>
-                            <button className='edit-button' onClick={() => setAddNewNote(true)}>
-                                + Add Note
+                            <button className='edit-button' onClick={() => setAddNewTag(true)}>
+                                + Add Tag
                             </button>
                         </div>
                     )}
+                <div className='current-option-options'>
+                    <div>
+                        {tags.map(tag => (
+                            <div key={tag.id} className='notebook-list-item'>
+                                <div onClick={async () => await getCurrentTag(tag.id)}>
+                                    <div className='notebook-list-item-name'># {tag.name}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
+                        </div>
             <div className='current-option-content'>
                 <CurrentOptionContent />
             </div>

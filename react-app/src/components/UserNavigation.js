@@ -6,7 +6,7 @@ import LogoutButton from './auth/LogoutButton';
 const UserNavigation = () => {
     const sessionUser = useSelector(state => state.session.user);
 
-    const { setOption, setCurrentOption } = useContext(OptionContext);
+    const { option, setOption, setCurrentOption } = useContext(OptionContext);
     return (
         <div className='user-nav'>
             <div className='hello-user'>
@@ -20,12 +20,18 @@ const UserNavigation = () => {
             <div>
 
             </div>
+            {option !== 'home' && (
+                <div className='browser-user-nav mrgnbtm1rem hello-user'
+                    onClick={() => {
+                        setOption('home');
+                        setCurrentOption(null);
+                    }}>
+                    <div>Home</div>
+                    <i class="fa-solid fa-house edit-button"></i>
+                </div>
+            )}
             <div className='browser-user-nav'>
-                <div className='browser-heading'>Browser</div>
-                <div onClick={() => {
-                    setOption('home');
-                    setCurrentOption(null);
-                }}>Home</div>
+                <div className='browser-heading'>Details</div>
                 <div onClick={() => {
                     setOption('notebooks');
                     setCurrentOption(null);

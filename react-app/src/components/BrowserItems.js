@@ -48,11 +48,11 @@ const BrowserItems = () => {
                     </div>
                 </div>
                 <div className="option-details">
-                    {currentOption ? (
-                        <div className="option-date-container">
-                    <div style={{ fontSize: '45px', textAlign: 'center', maxWidth: '30rem' }}>
-                        {currentOption.name}
+                    <div style={{fontSize: '45px', textAlign: 'center'}}>
+                        {currentOption ? currentOption.name : `Click on a ${option.slice(0, option.length - 1)} to view its details!`}
                     </div>
+                    {currentOption && (
+                        <div className="option-date-container">
                             <div className="option-dates">
                                 <div className="date">
                                     <div className="twtypxtext">
@@ -73,9 +73,9 @@ const BrowserItems = () => {
                             </div>
                             {option === 'tags' && (
                                 <div>
-                                    <div>
+                                    {<div>
                                         Associated notes:
-                                    </div>
+                                    </div>}
                                     <div>
                                         {currentOption.notes.length > 0 && (
                                             <ListItems arr={currentOption.notes} />
@@ -114,10 +114,6 @@ const BrowserItems = () => {
                                     </div>
                                 </div>
                             )}
-                        </div>
-                    ) : (
-                        <div style={{ fontSize: '45px', textAlign: 'center', maxWidth: '30rem'}}>
-                        {`Click on a ${option.slice(0, option.length - 1)} to view its details!`}
                         </div>
                     )}
                 </div>

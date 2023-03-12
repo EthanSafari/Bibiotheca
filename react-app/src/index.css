@@ -54,7 +54,7 @@ button {
 .current-option-options {
     height: fit-content;
     border: 1px solid black;
-    width: 96%;
+    width: 95%;
     display: flex;
     padding: 5px;
     border-radius: 3px;
@@ -474,4 +474,8 @@ button {
 .cntr {
     max-width: 40rem;
     font-size: 18px;
+}
+
+.mrgnbtm1rem {
+    margin-bottom: 1rem;
 }
