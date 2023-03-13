@@ -157,8 +157,9 @@ const CurrentOptionMenu = ({ notebooks, notes, tags }) => {
                         <div>
                             {notes.map(note => (
                                 <div key={note.id} className='notebook-list-item'>
-                                    <div onClick={async () => await getCurrentNote(note.id)}>
-                                        <div className='notebook-list-item-name'>{notes.indexOf(note) + 1}.{note.name}</div>
+                                    <div onClick={async () => await getCurrentNote(note.id)} className='dsplyflx'>
+                                        <div>{notes.indexOf(note) + 1}.</div>
+                                        <div className='notebook-list-item-name'>{note.name}</div>
                                     </div>
                                 </div>
                             ))}
@@ -197,14 +198,14 @@ const CurrentOptionMenu = ({ notebooks, notes, tags }) => {
                         <div>
                             {tags.map(tag => (
                                 <div key={tag.id} className='notebook-list-item'>
-                                    <div style={{display: 'flex'}}>
+                                    <div style={{ display: 'flex' }}>
                                         <EditTagModal tag={tag} />
                                         <div onClick={async () => await getCurrentTag(tag.id)}>
                                             <div className='notebook-list-item-name'>{tag.name}</div>
                                         </div>
                                     </div>
                                     <button className='delete-button' title='Delete Notebook'
-                                    onClick={() => deleteTagById(tag.id)}><i class="fa-solid fa-fire fire-button"></i></button>
+                                        onClick={() => deleteTagById(tag.id)}><i class="fa-solid fa-fire fire-button"></i></button>
                                 </div>
                             ))}
                         </div>

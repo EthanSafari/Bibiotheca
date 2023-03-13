@@ -498,3 +498,7 @@ button {
     margin-right: 5px;
     background-color: transparent;
 }
+
+.dsplyflx {
+    display: flex;
+}
