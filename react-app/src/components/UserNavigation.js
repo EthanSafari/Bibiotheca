@@ -2,6 +2,9 @@ import React, { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { OptionContext } from '../context/OptionContext';
 import LogoutButton from './auth/LogoutButton';
+import EditTagModal from './EditTagModal';
+import Greeting from './EditTagModal';
+import OpenModalButton from './OpenModalButton';
 
 const UserNavigation = () => {
     const sessionUser = useSelector(state => state.session.user);

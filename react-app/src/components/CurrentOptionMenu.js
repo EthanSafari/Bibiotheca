@@ -5,7 +5,9 @@ import { getAllNotes, getSingleNote } from '../store/note';
 import { burnNotebook, createNotebook, getSingleNotebook } from '../store/notebook';
 import CurrentOptionContent from './CurrentOptionContent';
 import { newNote } from '../store/note';
-import { createTag, getSingleTag } from '../store/tag';
+import { createTag, deleteTag, getSingleTag } from '../store/tag';
+import Greeting from './EditTagModal';
+import EditTagModal from './EditTagModal';
 
 const CurrentOptionMenu = ({ notebooks, notes, tags }) => {
     const dispatch = useDispatch();
@@ -37,6 +39,10 @@ const CurrentOptionMenu = ({ notebooks, notes, tags }) => {
 
     const getCurrentTag = async (tagId) => {
         await dispatch(getSingleTag(tagId));
+    };
+
+    const deleteTagById = async (tagId) => {
+        await dispatch(deleteTag(tagId));
     };
 
     const currentNotebook = currentNotebookObj ? Object.values(currentNotebookObj) : null;
@@ -152,7 +158,7 @@ const CurrentOptionMenu = ({ notebooks, notes, tags }) => {
                             {notes.map(note => (
                                 <div key={note.id} className='notebook-list-item'>
                                     <div onClick={async () => await getCurrentNote(note.id)}>
-                                        <div className='notebook-list-item-name'># {note.name}</div>
+                                        <div className='notebook-list-item-name'>{notes.indexOf(note) + 1}.{note.name}</div>
                                     </div>
                                 </div>
                             ))}
@@ -187,19 +193,24 @@ const CurrentOptionMenu = ({ notebooks, notes, tags }) => {
                             </button>
                         </div>
                     )}
-                <div className='current-option-options'>
-                    <div>
-                        {tags.map(tag => (
-                            <div key={tag.id} className='notebook-list-item'>
-                                <div onClick={async () => await getCurrentTag(tag.id)}>
-                                    <div className='notebook-list-item-name'># {tag.name}</div>
+                    <div className='current-option-options'>
+                        <div>
+                            {tags.map(tag => (
+                                <div key={tag.id} className='notebook-list-item'>
+                                    <div style={{display: 'flex'}}>
+                                        <EditTagModal tag={tag} />
+                                        <div onClick={async () => await getCurrentTag(tag.id)}>
+                                            <div className='notebook-list-item-name'>{tag.name}</div>
+                                        </div>
+                                    </div>
+                                    <button className='delete-button' title='Delete Notebook'
+                                    onClick={() => deleteTagById(tag.id)}><i class="fa-solid fa-fire fire-button"></i></button>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
-                        </div>
             <div className='current-option-content'>
                 <CurrentOptionContent />
             </div>

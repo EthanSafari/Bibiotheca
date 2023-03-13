@@ -492,3 +492,9 @@ button {
     display: flex;
     justify-content: center;
 }
+
+.edit-tag-button {
+    border: none;
+    margin-right: 5px;
+    background-color: transparent;
+}
