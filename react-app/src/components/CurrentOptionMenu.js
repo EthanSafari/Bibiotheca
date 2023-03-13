@@ -197,11 +197,11 @@ const CurrentOptionMenu = ({ notebooks, notes, tags }) => {
                     <div className='current-option-options'>
                         <div>
                             {tags.map(tag => (
-                                <div key={tag.id} className='notebook-list-item'>
+                                <div key={tag.id} className='notebook-list-item regpointer'>
                                     <div style={{ display: 'flex' }}>
                                         <EditTagModal tag={tag} />
                                         <div onClick={async () => await getCurrentTag(tag.id)}>
-                                            <div className='notebook-list-item-name'>{tag.name}</div>
+                                            <div className='notebook-list-item-name regpointer'>{tag.name}</div>
                                         </div>
                                     </div>
                                     <button className='delete-button' title='Delete Notebook'

@@ -502,3 +502,46 @@ button {
 .dsplyflx {
     display: flex;
 }
+
+.update-tag-form {
+    width: 28rem;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    border-radius: 3px;
+    padding-bottom: 4rem;
+}
+
+.exit-modal-button {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.edit-tag-name {
+    margin: 1rem 0;
+    height: 50px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, .7);
+}
+
+.exit-save-button {
+    background-color: transparent;
+    border: none;
+}
+
+.handpointer {
+    cursor: pointer;
+}
+
+.regpointer {
+    cursor: default;
+}

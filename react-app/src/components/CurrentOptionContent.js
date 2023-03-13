@@ -36,7 +36,6 @@ const CurrentOptionContent = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         const updateNotebook = {
             id: notebookItem[0]?.id,
             name: editNotebookName,
@@ -49,7 +48,6 @@ const CurrentOptionContent = () => {
     };
 
     const onNoteEditSubmit = async () => {
-
         const updatedNote = {
             id: noteItem[0]?.id,
             name: editNoteName,

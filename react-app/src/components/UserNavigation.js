@@ -24,7 +24,7 @@ const UserNavigation = () => {
 
             </div>
             {option !== 'home' && (
-                <div className='browser-user-nav mrgnbtm1rem hello-user'
+                <div className='browser-user-nav mrgnbtm1rem hello-user handpointer'
                     onClick={() => {
                         setOption('home');
                         setCurrentOption(null);
@@ -38,15 +38,21 @@ const UserNavigation = () => {
                 <div onClick={() => {
                     setOption('notebooks');
                     setCurrentOption(null);
-                }}>Notebooks</div>
+                }}
+                className='handpointer'
+                >Notebooks</div>
                 <div onClick={() => {
                     setOption('tags');
                     setCurrentOption(null);
-                }}>Tags</div>
+                }}
+                className='handpointer'
+                >Tags</div>
                 <div onClick={() => {
                     setOption('notes');
                     setCurrentOption(null);
-                }}>Notes</div>
+                }}
+                className='handpointer'
+                >Notes</div>
             </div>
         </div>
     );

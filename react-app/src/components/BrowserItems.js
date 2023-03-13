@@ -33,7 +33,6 @@ const BrowserItems = () => {
 
     return (
         <div className="browser">
-            {console.log(currentOption)}
             <div className="browser-choice">
                 {`${sessionUser.firstName.toUpperCase() + 'S' + "'"} ${option.toUpperCase()}`}
             </div>
@@ -41,7 +40,7 @@ const BrowserItems = () => {
                 <div className="option-list">
                     <div className="option-list-item">
                         {optionContent.map(optionItem => (
-                            <div key={optionItem.id} onClick={() => setCurrentOption(optionItem)}>
+                            <div key={optionItem.id} onClick={() => setCurrentOption(optionItem)} className='handpointer'>
                                 {optionItem.name}
                             </div>
                         ))}

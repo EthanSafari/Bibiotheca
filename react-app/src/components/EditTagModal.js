@@ -1,17 +1,24 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { editTag } from "../store/tag";
 import OpenModalButton from "./OpenModalButton";
+import { useModal } from "../context/Modal";
 
 
 const EditTagModalForm = ({ tag }) => {
+  const dispatch = useDispatch();
+
+  const { closeModal } = useModal();
+
   const sessionNotes = useSelector(state => state.notes.userNotes);
+  const sessionUser = useSelector(state => state.session.user);
 
   const [selectedNotes, setSelectedNotes] = useState(tag.notes.map(tagNote => tagNote.id));
+  const [editTagName, setEditTagName] = useState(tag?.name);
 
   const handleTagNoteAlteration = async (e) => {
     const noteId = parseInt(e.target.value);
     const isChecked = e.target.checked;
-
     if (isChecked) {
       async function addNoteToTag() {
         const response = await fetch(`/api/tags/${tag.id}/alter-notes/${noteId}`, {
@@ -34,7 +41,6 @@ const EditTagModalForm = ({ tag }) => {
       removeNoteFromTag();
       tag['notes'].splice(tag['notes'].indexOf(tag['notes'].find(note => note.id === noteId)), 1);
     };
-
     setSelectedNotes(notes => {
       if (isChecked) {
         return [...notes, noteId];
@@ -44,18 +50,44 @@ const EditTagModalForm = ({ tag }) => {
     });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const editedTag = {
+      id: tag.id,
+      name: editTagName,
+      user_id: sessionUser.id,
+    };
+    await dispatch(editTag(editedTag));
+    closeModal();
+  };
+
   return (
-    <form className="update-tag-form">
-      <h2>{tag?.name}</h2>
+    <form className="update-tag-form" onSubmit={handleSubmit}>
+      <div className="exit-modal-button">
+        <button className="exit-save-button"
+        disabled={editTagName?.length < 1 || new Array(editTagName?.length).fill(' ').join('') === editTagName}
+        >
+          <i class="fa-regular fa-floppy-disk" style={{ fontSize: '16px' }}></i>
+        </button>
+      </div>
+      <input
+        type='text'
+        placeholder={'Please enter a valid name*'}
+        value={editTagName}
+        onChange={e => setEditTagName(e.target.value)}
+        required
+        className='edit-tag-name'
+      />
       <div>
         {Object.values(sessionNotes).map(note => (
-          <div key={note.id}>
+          <div key={note.id} className='twtypxtext'>
             <label>
               <input
                 type="checkbox"
                 value={note.id}
                 checked={selectedNotes.includes(note.id)}
                 onChange={handleTagNoteAlteration}
+                style={{marginRight: '5px'}}
               />
               {note.name}
             </label>
